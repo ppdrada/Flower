@@ -1,4 +1,5 @@
 import math
+import os
 import sys
 import time
 
@@ -11,6 +12,15 @@ TICK_MS = 10
 WIN_FRAC = 0.92
 LOOP = False
 GIF_SECONDS = 40.0
+
+
+def resource_path(rel):
+    # funciona tanto rodando o .py quanto o .exe gerado pelo PyInstaller (--onefile)
+    base = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base, rel)
+
+
+ICON_PATH = resource_path(os.path.join("img", "flow.ico"))
 
 # colunas: tempo, stem, size, bloom, wilt, leaf, glow
 # wilt fica sempre 0 -> a flor nunca murcha; depois do ultimo keyframe ela
@@ -511,8 +521,20 @@ class App:
         import tkinter as tk
         from PIL import ImageTk
 
+        # faz o Windows usar o ícone do app na barra de tarefas (em vez do ícone do Python)
+        if sys.platform == "win32":
+            try:
+                import ctypes
+                ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("flower.app")
+            except Exception:
+                pass
+
         self.root = tk.Tk()
-        self.root.title("Pointillism Flower")
+        self.root.title("Flower")
+        try:
+            self.root.iconbitmap(ICON_PATH)
+        except tk.TclError:
+            print(f"Não consegui carregar o ícone: {ICON_PATH}")
         self.root.configure(bg="black")
         sw, sh = self.root.winfo_screenwidth(), self.root.winfo_screenheight()
         H = int(min(sh * WIN_FRAC, sw * 0.96))
