@@ -4,7 +4,7 @@
 
 A flower made of thousands of tiny dots that sprouts from the soil, grows, blooms and stays alive and glowing forever. Everything is generated with NumPy and drawn pixel by pixel, with no pre-made images.
 
-![Flower stages](flower_stages.png)
+![Flower stages](img/flower_stages.png)
 
 ## Requirements
 

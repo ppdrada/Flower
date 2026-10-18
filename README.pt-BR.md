@@ -4,7 +4,7 @@
 
 Uma flor feita de milhares de pontinhos que nasce da terra, cresce, desabrocha e fica viva e brilhando para sempre. Tudo é gerado com NumPy e desenhado pixel a pixel, sem nenhuma imagem pronta.
 
-![Fases da flor](flower_stages.png)
+![Flower stages](img/flower_stages.png)
 
 ## Requisitos
 
